@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyFlow | Student Study Planner</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+                <h2>Study<span>Flow</span></h2>
+                <small>Student Study Planner</small>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+
+            <button id="themeBtn" class="icon-btn" title="Change theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button id="clearAllBtn" class="clear-btn">
+                <i class="fa-solid fa-trash"></i>
+                Clear All
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <!-- HERO -->
+
+        <section class="hero" data-aos="fade-up">
+
+            <div class="hero-text">
+
+                <span class="welcome-tag">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Welcome to your study space
+                </span>
+
+                <h1>
+                    Plan your study.
+                    <br>
+                    <span id="typedText"></span>
+                </h1>
+
+                <p>
+                    Organize your academic tasks, track your progress
+                    and stay consistent with your studies.
+                </p>
+
+                <button class="primary-btn" id="heroAddBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add New Task
+                </button>
+
+            </div>
+
+            <div class="hero-illustration">
+
+                <div class="floating-card card-one">
+                    <i class="fa-solid fa-check"></i>
+                    Task Completed
+                </div>
+
+                <div class="book-illustration">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div class="floating-card card-two">
+                    <i class="fa-solid fa-star"></i>
+                    Keep Learning
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+                    <p>Total Tasks</p>
+                    <h2 id="totalTasks">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <p>Completed</p>
+                    <h2 id="completedTasks">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <p>Pending</p>
+                    <h2 id="pendingTasks">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+                    <p>Progress</p>
+                    <h2 id="progressPercent">0%</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTENT GRID ================= -->
+
+        <section class="content-grid">
+
+            <!-- TASK SECTION -->
+
+            <div class="task-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>My Tasks</h2>
+                        <p>Manage your daily study activities.</p>
+                    </div>
+
+                    <button class="primary-btn small" id="addTaskBtn">
+                        <i class="fa-solid fa-plus"></i>
+                        Add Task
+                    </button>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="search-area">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search tasks...">
+
+                    </div>
+
+
+                    <select id="statusFilter">
+
+                        <option value="all">All Tasks</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+
+                    </select>
+
+
+                    <select id="priorityFilter">
+
+                        <option value="all">All Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TASK LIST -->
+
+                <div id="taskList" class="task-list">
+
+                    <!-- Tasks will appear here -->
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <!-- PROGRESS CARD -->
+
+                <div class="panel progress-panel" data-aos="fade-left">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <h3>Study Progress</h3>
+                            <p>Your overall progress</p>
+                        </div>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+                    <div class="progress-circle">
+
+                        <div class="progress-inner">
+                            <strong id="circlePercent">0%</strong>
+                            <span>Completed</span>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-message" id="progressMessage">
+                        Start adding tasks to track your progress.
+                    </div>
+
+                </div>
+
+
+                <!-- CHART -->
+
+                <div class="panel" data-aos="fade-left" data-aos-delay="150">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <h3>Subjects</h3>
+                            <p>Task distribution</p>
+                        </div>
+
+                        <i class="fa-solid fa-book"></i>
+
+                    </div>
+
+                    <canvas id="subjectChart"></canvas>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- ================= TIPS ================= -->
+
+        <section class="tips-section" data-aos="fade-up">
+
+            <div class="tip-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <div>
+                <h3>Study Tip</h3>
+
+                <p id="studyTip">
+                    Break large tasks into smaller tasks to make studying easier.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div id="taskModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="modalTitle">Add New Task</h2>
+                    <p>Create a study task.</p>
+                </div>
+
+                <button id="closeModal" class="close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="taskForm">
+
+                <input type="hidden" id="editTaskId">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Task Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskName"
+                        placeholder="e.g. Complete Mathematics Chapter 5"
+                        required>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Subject</label>
+
+                        <select id="taskSubject" required>
+
+                            <option value="">Select Subject</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="English">English</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Priority</label>
+
+                        <select id="taskPriority">
+
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Due Date</label>
+
+                    <input
+                        type="date"
+                        id="taskDate"
+                        required>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelBtn">
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+                        <i class="fa-solid fa-check"></i>
+                        Save Task
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
